@@ -157,8 +157,8 @@ static unsigned int search_servers(time_t now, struct all_addr **addrpp, unsigne
 	    if (pcre_fullinfo(serv->regex, serv->pextra, PCRE_INFO_CAPTURECOUNT, &captcount) == 0)
 	      {
 		/* C99 dyn-array, or alloca must be used */
-		int ovect[(captcount + 1) * 3];
-		if (pcre_exec(serv->regex, serv->pextra, qdomain, namelen, 0, 0, ovect, (captcount + 1) * 3) > 0)
+		int ovect[30];
+		if (pcre_exec(serv->regex, serv->pextra, qdomain, namelen, 0, 0, ovect, 30) > 0)
 		  {
 		    domainlen = (unsigned int) (ovect[1] - ovect[0]);
 		    if (domainlen >= matchlen)
